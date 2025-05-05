@@ -2,7 +2,7 @@
 
 Existe uma superclasse chamada StatePortableMachine.java, que herda SubsystemBase e possui alguns atributos e métodos.
 
-'''Java
+```Java
 public class StatePortableMachine{
 //Atributos
     StateMachine statemachine;
@@ -22,9 +22,9 @@ public class StatePortableMachine{
     public void actuateSubsystem(double value){}
     //método sobrecarregado, que recebe o valor diretamente.
 }
-'''
+```
 Além dessa classe, existe o enum States.java
-'''
+```Java
 public enum States{
   //enum que possui alguns atributos e métodos (o que nos interessa são somente os métodos).
   public Optional<Command> intermediateCommand(States state, StatePortableSubsystem subsystem){}
@@ -35,10 +35,10 @@ public enum States{
   //existe um método de relação para cada estado, que recebe um subssitema. Esse método é usado
   //uma única vez, e associa o subsistema ao estado com um valor.
 }
-'''
+```
 Além disso, existe uma classe FactoryIntermediateCommand.java, para simplificar o enum e torar a produção
 de comandos mais acessível:
-'''
+```Java
 public class IntermediateCommandFactory{
   private static Command intermediateCommandSelector(States state, StatePortableSubsystem subsystem){}
   //Retorna um comando sequencial, que pode ter duas formas.
@@ -49,9 +49,9 @@ public class IntermediateCommandFactory{
   //retorna um novo selectCommand, com uma implementação única para esse projeto, que possui como supplier esse
   //seletor de comandos (averiguar a necessidade disso).
 }
-'''
+```
 Temos essa implementação do SelectCommand.java, que possui a seguinte estrutura:
-'''
+```Java
 public class SelectCommand{
   private Supplier<Command> command;
   private Command selectedCommand;
@@ -64,16 +64,16 @@ public class SelectCommand{
   protected boolean isFinished(){}
   //condição de parada do comando selecionado no instante da leitura
 }
-'''
+```
 E, por fim, temos o pacote intercommands, que declara classes de interrelações (assim como qualquer outro comando).
 Sua estrutura geral pode ser abstraída por uma superclasse InterCommands.java:
-'''
+```Java
 public class InterCommands extends Command{
   protected final StatePortableSubsystem statePortableSubsystem;
   public InterCommands(StatePortableSubsystem statePortableSubsystem){}
   //inicializamos o atributo, e o aproveitamos nas outras classes intermediárias.
 }
-'''
+```
  O que você precisa fazer:
  1. Crie seus subsistemas. Para cada subsistema, siga os passos abaixo:
     1. herde StatePortableSubsystem
@@ -88,11 +88,11 @@ public class InterCommands extends Command{
     S1.intermediateCommands.put(S2, S1ToS2.class);
  5. Caso queira alguma análise mais complexa, coloque-a no método contracts, dentro da classe StateMachine.java
  6. Relacione os comandos principais aos botões na classe RobotContainer.java, seguindo a seguinte forma:
-    '''
+    ```Java
     new Trigget(()->[botao]).[acao](
       IntermediateCommandFactory
           .intermediateSelector(state, subsystem);
     )
-    '''
+    ```
 Por enquanto, estamos suportando apenas 1 subsistema. Mas, em breve, faremos o teste para n subsistemas.
 Só precisamos montar um protótipo que suporte essas características no laboratório.
