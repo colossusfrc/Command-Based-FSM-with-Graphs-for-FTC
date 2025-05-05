@@ -2,7 +2,7 @@
 
 Existe uma superclasse chamada StatePortableMachine.java, que herda SubsystemBase e possui alguns atributos e métodos.
 
-'''
+'''Java
 public class StatePortableMachine{
 //Atributos
     StateMachine statemachine;
