@@ -1,4 +1,4 @@
-# Command-Based FTC com comandos interrelacionados por grafos.
+# Command-Based FTC com comandos interrelacionados por grafos
 
 Existe uma superclasse chamada StatePortableMachine.java, que herda SubsystemBase e possui alguns atributos e métodos.
 
