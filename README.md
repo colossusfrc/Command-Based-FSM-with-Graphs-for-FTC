@@ -89,7 +89,7 @@ public class InterCommands extends Command{
  5. Caso queira alguma análise mais complexa, coloque-a no método contracts, dentro da classe StateMachine.java
  6. Relacione os comandos principais aos botões na classe RobotContainer.java, seguindo a seguinte forma:
     ```Java
-    new Trigget(()->[botao]).[acao](
+    new Trigger(()->[botao]).[acao](
       IntermediateCommandFactory
           .intermediateSelector(state, subsystem);
     )
