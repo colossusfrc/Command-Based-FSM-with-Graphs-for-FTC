@@ -1,25 +1,25 @@
 # Command-Based FTC com comandos interrelacionados por grafos
- ##O que você precisa fazer:
- ###1. Crie seus subsistemas.
+ O que você precisa fazer:
+ 1. Crie seus subsistemas.
     Para cada subsistema, siga os passos abaixo:
     1. herde StatePortableSubsystem
     2. Associe a superestrutura do construtor
     3. implemente os métodos abstratos finalAction e actuateSubsystem()
- ###2. Crie seus estados 
+ 2. Crie seus estados 
      (este possui alguns como exemplo, mas pode mudá-los)
- ###3. No pacote commands-intercommands,
+ 3. No pacote commands-intercommands,
      crie uma classe para cada relação entre os estados que você fez,
     de modo que se receba um StatePortableSubsystem no seu construtor.
- ###4. No enum states,
+ 4. No enum states,
      no bloco estático, relacione um estado ao outro com o acesso
     intermediateCommands.put seguido de seu estado alvo e de sua classe referenciada.
     Exemplo: Temos o estado S1 e S2, bem como a classe S1ToS2.java. Nesse bloco, faríamos:
     ```Java
     S1.intermediateCommands.put(S2, S1ToS2.class);
     ```
- ###5. Caso queira alguma análise mais complexa,
+ 5. Caso queira alguma análise mais complexa,
      coloque-a no método contracts, dentro da classe StateMachine.java
- ###6. Relacione os comandos principais
+ 6. Relacione os comandos principais
      aos botões na classe RobotContainer.java, seguindo a seguinte forma:
     ```Java
     new Trigger(()->[botao]).[acao](
