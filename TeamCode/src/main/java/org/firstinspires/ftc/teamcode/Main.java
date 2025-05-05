@@ -11,7 +11,6 @@ public class Main extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         new RobotContainer(this);
 
-
         waitForStart();
         while (opModeIsActive()){
             CommandScheduler.getInstance().run(this);
