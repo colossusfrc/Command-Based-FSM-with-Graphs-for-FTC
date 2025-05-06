@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.commands.generalcommand;
 
-import org.firstinspires.ftc.teamcode.CommandBased.Command;
+import org.firstinspires.ftc.teamcode.ufpackages.CommandBased.Command;
 import org.firstinspires.ftc.teamcode.rcfeatures.States;
 import org.firstinspires.ftc.teamcode.subsystems.stateportable.StatePortableSubsystem;
 

@@ -1,22 +1,14 @@
 package org.firstinspires.ftc.teamcode.subsystems.stateportable;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
-import org.firstinspires.ftc.teamcode.CommandBased.SubsystemBase;
+import org.firstinspires.ftc.teamcode.ufpackages.CommandBased.SubsystemBase;
 import org.firstinspires.ftc.teamcode.rcfeatures.StateMachine;
 import org.firstinspires.ftc.teamcode.rcfeatures.States;
 
 public abstract class StatePortableSubsystem extends SubsystemBase {
     private final StateMachine stateMachine;
-    protected final LinearOpMode linearOpMode;
 
-    protected StatePortableSubsystem(LinearOpMode linearOpMode) {
+    protected StatePortableSubsystem() {
         this.stateMachine = new StateMachine();
-        this.linearOpMode = linearOpMode;
-    }
-    protected StatePortableSubsystem(){
-        this.stateMachine = new StateMachine();
-        this.linearOpMode = null;
     }
 
     public void setState(States state){
@@ -33,4 +25,7 @@ public abstract class StatePortableSubsystem extends SubsystemBase {
     }
 
     public abstract void finalAction();
+    protected void registerSubsystem(StatePortableSubsystem subsystem){
+        Robot.getInstance().addSubsystems(subsystem);
+    }
 }

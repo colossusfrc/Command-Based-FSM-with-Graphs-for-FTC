@@ -1,16 +1,21 @@
 package org.firstinspires.ftc.teamcode.commands.intercommands;
 
-import org.firstinspires.ftc.teamcode.CommandBased.Command;
-import org.firstinspires.ftc.teamcode.subsystems.stateportable.StatePortableSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.LeftChassis;
+import org.firstinspires.ftc.teamcode.subsystems.RightChassis;
+import org.firstinspires.ftc.teamcode.subsystems.stateportable.Robot;
+
 //exemplo
 public class S1ToIdle extends InterCommands {
-    public S1ToIdle(StatePortableSubsystem statePortableSubsystem){
+    public S1ToIdle(Robot statePortableSubsystem){
         super(statePortableSubsystem);
     }
 
     @Override
     public void execute() {
-        statePortableSubsystem.actuateSubsystem(0.3);
+
+        statePortableSubsystem.getByClass(LeftChassis.class).actuateSubsystem(0.1);
+        statePortableSubsystem.getByClass(RightChassis.class).actuateSubsystem(0.1);
+
     }
 
     @Override

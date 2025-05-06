@@ -1,14 +1,8 @@
 package org.firstinspires.ftc.teamcode.rcfeatures;
 
-import org.firstinspires.ftc.teamcode.CommandBased.Command;
-import org.firstinspires.ftc.teamcode.CommandBased.Subsystem;
-import org.firstinspires.ftc.teamcode.RRFeatures.MecanumDrive;
-import org.firstinspires.ftc.teamcode.commands.intercommands.IdleToS1;
-import org.firstinspires.ftc.teamcode.commands.intercommands.IdleToS2;
-import org.firstinspires.ftc.teamcode.commands.intercommands.S1ToIdle;
-import org.firstinspires.ftc.teamcode.commands.intercommands.S1ToS2;
-import org.firstinspires.ftc.teamcode.commands.intercommands.S2ToIdle;
-import org.firstinspires.ftc.teamcode.commands.intercommands.S2ToS1;
+import org.firstinspires.ftc.teamcode.ufpackages.CommandBased.Command;
+import org.firstinspires.ftc.teamcode.commands.intercommands.*;
+import org.firstinspires.ftc.teamcode.subsystems.stateportable.Robot;
 import org.firstinspires.ftc.teamcode.subsystems.stateportable.StatePortableSubsystem;
 
 import java.lang.reflect.InvocationTargetException;
@@ -35,15 +29,30 @@ public enum States {
         IDLE.intermediateCommands.put(S2, IdleToS2.class);
     }
     public Optional<Command> intermediateCommand(States hypotheticalState,
-                                                 StatePortableSubsystem statePortableSubsystem)
+                                                 Robot statePortableSubsystem)
             throws NoSuchMethodException,
             InvocationTargetException,
             IllegalAccessException,
             InstantiationException {
             Class<?> c = this.intermediateCommands.get(hypotheticalState);
             assert c != null;
-            Command intermediateCommand = (Command) c.getConstructor(StatePortableSubsystem.class).newInstance(statePortableSubsystem);
+            Command intermediateCommand = (Command) c.
+                    getConstructor(Robot.class).
+                    newInstance(statePortableSubsystem);
             return Optional.of(intermediateCommand.withTimeout(2));
+    }
+    public Optional<Command> intermediateCommand(States hypotheticalState,
+                                                 StatePortableSubsystem statePortableSubsystem)
+            throws NoSuchMethodException,
+            InvocationTargetException,
+            IllegalAccessException,
+            InstantiationException {
+        Class<?> c = this.intermediateCommands.get(hypotheticalState);
+        assert c != null;
+        Command intermediateCommand = (Command) c.
+                getConstructor(StatePortableSubsystem.class).
+                newInstance(statePortableSubsystem);
+        return Optional.of(intermediateCommand.withTimeout(2));
     }
     private void relate(StatePortableSubsystem subsystemToRelate, Double relation){
         dataRelations.put(subsystemToRelate, relation);

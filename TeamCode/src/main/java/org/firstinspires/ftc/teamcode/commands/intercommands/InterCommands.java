@@ -1,12 +1,12 @@
 package org.firstinspires.ftc.teamcode.commands.intercommands;
 
-import org.firstinspires.ftc.teamcode.CommandBased.Command;
-import org.firstinspires.ftc.teamcode.subsystems.stateportable.StatePortableSubsystem;
+import org.firstinspires.ftc.teamcode.ufpackages.CommandBased.Command;
+import org.firstinspires.ftc.teamcode.subsystems.stateportable.Robot;
 
 public class InterCommands extends Command {
 
-    protected final StatePortableSubsystem statePortableSubsystem;
-    public InterCommands(StatePortableSubsystem statePortableSubsystem){
+    protected final Robot statePortableSubsystem;
+    public InterCommands(Robot statePortableSubsystem){
         this.statePortableSubsystem = statePortableSubsystem;
         addRequirements(statePortableSubsystem);
     }
